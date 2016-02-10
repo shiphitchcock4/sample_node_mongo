@@ -21,13 +21,17 @@ build:
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
  ci:
-   - npm install
-   - mkdir -p shippable/testresults
-   - mkdir -p shippable/codecoverage
-   - export XUNIT_FILE=shippable/testresults/result.xml
-   - grunt
-   - ./node_modules/.bin/istanbul cover grunt -- -u tdd
-   - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
-   - cat shippable/codecoverage/cobertura-coverage.xml
-   - mongo test --eval "db.dropDatabase()"
-  
+    - echo "Hello, World!"
+    - env
+    - echo $PATH
+    - reports --help
+    - node --version
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    - npm install
+    - ./node_modules/.bin/istanbul cover grunt -- -u tdd
+    - ./node_modules/.bin/istanbul report cobertura --dir  shippable/codecoverage/
+    - cat shippable/codecoverage/cobertura-coverage.xml
+    - export XUNIT_FILE=shippable/testresults/result.xml
+    - grunt
+   
